@@ -177,18 +177,26 @@
       max-width: 680px;
     }
 
-    .slide-light .slide-counter {
+    .slide-counter {
       position: absolute;
       bottom: 32px;
       left: 80px;
       font-size: 12px;
       font-weight: 500;
-      color: #CCCCCC;
       z-index: 1;
+    }
+
+    .slide-light .slide-counter {
+      color: #CCCCCC;
     }
 
     .slide-light .wordmark {
       color: var(--ink-muted);
+    }
+
+    .slide-dark .slide-counter {
+      color: #555555;
+      left: 80px;
     }
 
     /* ══════════════════════════════════════════
@@ -258,14 +266,14 @@
   <!-- ══════════════════════════════════════════
        SLIDE 1 — Hook
   ══════════════════════════════════════════ -->
-  <div class="slide slide-1">
+  <div class="slide slide-1 slide-dark">
     <div class="cyan-bar"></div>
     <div class="content">
       <span class="chip">Design Systems</span>
       <h1>Your design system is lying to you.</h1>
       <p class="sub">4 signs it's quietly failing your team</p>
     </div>
-    <span class="slide-counter" style="position:absolute;bottom:32px;left:80px;font-size:12px;font-weight:500;color:#555555;z-index:1;">01 / 07</span>
+    <span class="slide-counter">01 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
