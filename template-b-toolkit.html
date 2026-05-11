@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template B — Toolkit Carousel | figr.design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --ink: #0D0D0D;
+      --ink-muted: #6B6B6B;
+      --accent: #00C8B4;
+      --accent-light: #E6FAF8;
+      --border: #E8E8E8;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #D0D0D0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 40px 0;
+    }
+
+    /* ── Shared slide base ── */
+    .slide {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── Shared wordmark ── */
+    .wordmark {
+      position: absolute;
+      bottom: 32px;
+      right: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Shared bottom cyan bar ── */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--accent);
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 1 — Hook (white)
+    ══════════════════════════════════════════ */
+    .slide-1 {
+      background: var(--surface);
+    }
+
+    .slide-1 .chip {
+      position: absolute;
+      top: 52px;
+      left: 52px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 4px;
+    }
+
+    .slide-1 .center-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 100px;
+    }
+
+    .slide-1 h1 {
+      font-size: 60px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+
+    .slide-1 .sub {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      max-width: 520px;
+      line-height: 1.5;
+    }
+
+    .slide-1 .wordmark {
+      color: var(--ink-muted);
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDES 2–6 — Problem + Steps (light)
+    ══════════════════════════════════════════ */
+    .slide-card {
+      background: var(--bg);
+    }
+
+    .slide-card .card-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-card .card {
+      width: 880px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 60px 68px;
+    }
+
+    .slide-card .card-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .slide-card .badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .slide-card .card-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-muted);
+    }
+
+    .slide-card h2 {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .slide-card .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 24px 0;
+    }
+
+    .slide-card .body-text {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .slide-card .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+
+    .slide-card .slide-counter {
+      position: absolute;
+      bottom: 32px;
+      left: 52px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #CCCCCC;
+    }
+
+    .slide-card .wordmark {
+      color: var(--ink-muted);
+    }
+
+    /* ══════════════════════════════════════════
+       SLIDE 7 — CTA (white)
+    ══════════════════════════════════════════ */
+    .slide-7 {
+      background: var(--surface);
+    }
+
+    .slide-7 .center-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 100px;
+    }
+
+    .slide-7 .arrow {
+      font-size: 72px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 32px;
+    }
+
+    .slide-7 h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .slide-7 .sub {
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-bottom: 40px;
+      max-width: 440px;
+      line-height: 1.5;
+    }
+
+    .slide-7 .cta-btn {
+      display: inline-block;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .slide-7 .wordmark {
+      color: var(--ink-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 1 — Hook
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-1">
+    <span class="chip">HOW TO</span>
+    <div class="center-content">
+      <h1>Run better design critiques in 30 min.</h1>
+      <p class="sub">A repeatable format that actually improves work — without the circular feedback loops.</p>
+    </div>
+    <div class="bottom-bar"></div>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 2 — The Problem
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-card">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">!</div>
+          <span class="card-label">The Problem</span>
+        </div>
+        <h2>Most critiques are just opinion contests.</h2>
+        <hr class="divider">
+        <p class="body-text">Without structure, design critiques devolve into whoever speaks loudest wins. Good work gets killed. Weak work ships. And designers leave feeling less confident than when they walked in.</p>
+        <span class="tag">DESIGN PROCESS</span>
+      </div>
+    </div>
+    <span class="slide-counter">02 / 07</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 3 — Step 01
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-card">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">1</div>
+          <span class="card-label">Step 01 — 0–5 min</span>
+        </div>
+        <h2>State the goal before anything else.</h2>
+        <hr class="divider">
+        <p class="body-text">The designer presents in 60 seconds: what is this screen trying to do, and what specific question needs feedback? Everything said after that gets filtered through that lens — not personal taste.</p>
+        <span class="tag">FACILITATION</span>
+      </div>
+    </div>
+    <span class="slide-counter">03 / 07</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 4 — Step 02
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-card">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">2</div>
+          <span class="card-label">Step 02 — 5–10 min</span>
+        </div>
+        <h2>Silent review first. No talking.</h2>
+        <hr class="divider">
+        <p class="body-text">Everyone looks at the design independently for 3 minutes and writes sticky notes — what works, what doesn't, what's unclear. This prevents anchoring bias where the loudest voice shapes everyone else's opinion.</p>
+        <span class="tag">BIAS REDUCTION</span>
+      </div>
+    </div>
+    <span class="slide-counter">04 / 07</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 5 — Step 03
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-card">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">3</div>
+          <span class="card-label">Step 03 — 10–22 min</span>
+        </div>
+        <h2>Feedback must reference the goal, not taste.</h2>
+        <hr class="divider">
+        <p class="body-text">Enforce one rule: every critique starts with 'Given the goal of X…'. 'I don't like this font' is noise. 'Given the goal of quick scanning, this hierarchy makes the CTA hard to find' is signal.</p>
+        <span class="tag">FEEDBACK QUALITY</span>
+      </div>
+    </div>
+    <span class="slide-counter">05 / 07</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 6 — Step 04
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-card">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-header">
+          <div class="badge">4</div>
+          <span class="card-label">Step 04 — 22–30 min</span>
+        </div>
+        <h2>Designer closes with a decision, not a list.</h2>
+        <hr class="divider">
+        <p class="body-text">The designer says what they'll change, what they'll ignore, and why — out loud, in the room. This closes the loop and signals to the team that critique is a tool, not a verdict.</p>
+        <span class="tag">OWNERSHIP</span>
+      </div>
+    </div>
+    <span class="slide-counter">06 / 07</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 7 — CTA
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-7">
+    <div class="center-content">
+      <div class="arrow">↓</div>
+      <h2>Follow figr.design</h2>
+      <p class="sub">Weekly frameworks for design leads.</p>
+      <span class="cta-btn">Visit figr.design →</span>
+    </div>
+    <div class="bottom-bar"></div>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+</body>
+</html>
