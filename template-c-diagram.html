@@ -18,6 +18,9 @@
       --accent-light: #E6FAF8;
       --border: #E8E8E8;
       --ghost: #CCCCCC;
+      --label-muted: #BBBBBB;
+      --accent-alpha: rgba(0, 200, 180, 0.12);
+      --ink-alpha: rgba(13, 13, 13, 0.06);
     }
 
     *, *::before, *::after {
@@ -180,7 +183,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #BBBBBB;
+      color: var(--label-muted);
       align-self: flex-start;
     }
 
@@ -236,7 +239,7 @@
       height: 200px;
       border-radius: 50%;
       border: 2px solid var(--accent);
-      background: rgba(0, 200, 180, 0.12);
+      background: var(--accent-alpha);
     }
 
     .venn-circle-right {
@@ -247,7 +250,7 @@
       height: 200px;
       border-radius: 50%;
       border: 2px solid var(--ink);
-      background: rgba(13, 13, 13, 0.06);
+      background: var(--ink-alpha);
     }
 
     .venn-label-left {
@@ -451,6 +454,17 @@
       gap: 12px;
       width: 100%;
       max-width: 380px;
+      position: relative;
+    }
+
+    .step-ladder-line {
+      position: absolute;
+      left: 17px;
+      top: 36px;
+      bottom: 36px;
+      width: 2px;
+      background: var(--border);
+      z-index: 0;
     }
 
     .step-item {
@@ -458,6 +472,8 @@
       flex-direction: row;
       align-items: center;
       gap: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .step-dot {
@@ -473,6 +489,7 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      z-index: 1;
     }
 
     .step-dot.filled {
@@ -562,11 +579,12 @@
     <div class="right-panel">
       <div class="teaser-visual">
         <div class="teaser-box-top"></div>
-        <div class="teaser-arrow">↕</div>
+        <div class="teaser-arrow">↓</div>
         <div class="teaser-box-bottom"></div>
       </div>
     </div>
 
+    <span class="slide-counter">01 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -593,7 +611,7 @@
       <p class="body">Both feel like "things we didn't do properly." But UX debt is felt by your users — it's friction in the experience. Design debt is felt by your team — it's inconsistency in the system. Treating them the same means fixing the wrong problem every time.</p>
     </div>
 
-    <span class="slide-counter">2 / 7</span>
+    <span class="slide-counter">02 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -609,7 +627,7 @@
           <div class="flow-title">UX Debt</div>
           <div class="flow-sub">Friction the user feels</div>
         </div>
-        <div class="flow-arrow">↕</div>
+        <div class="flow-arrow">↓</div>
         <div class="flow-box">
           <div class="flow-title">Design Debt</div>
           <div class="flow-sub">Inconsistency the system carries</div>
@@ -624,7 +642,7 @@
       <p class="body">UX debt shows up in user research, support tickets, and usability tests. Design debt shows up in component audits, design reviews, and engineering handoffs. One is a user problem. The other is a system problem. Name it right before you prioritize it.</p>
     </div>
 
-    <span class="slide-counter">3 / 7</span>
+    <span class="slide-counter">03 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -662,7 +680,7 @@
       <p class="body">UX debt leaves evidence in your data — drop-offs, failed flows, high task time. Design debt hides in your process — slow handoffs, mismatched components, duplicate patterns. You need both lenses to catch both problems before they compound.</p>
     </div>
 
-    <span class="slide-counter">4 / 7</span>
+    <span class="slide-counter">04 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -700,7 +718,7 @@
       <p class="body">Not all debt is equal. High-friction UX debt blocking users from completing tasks should be fixed in the current sprint. Design system inconsistencies slowing engineers down should be scheduled. Treat the matrix as a triage tool, not a backlog filter.</p>
     </div>
 
-    <span class="slide-counter">5 / 7</span>
+    <span class="slide-counter">05 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -712,6 +730,7 @@
     <div class="left-panel">
       <span class="diagram-label">The Fix Cycle</span>
       <div class="step-ladder">
+        <div class="step-ladder-line"></div>
         <div class="step-item">
           <div class="step-dot filled">1</div>
           <span class="step-text filled">Audit: categorize into UX vs. design debt</span>
@@ -738,7 +757,7 @@
       <p class="body">One-off debt sprints don't hold. Build it into the regular cadence. Audit and assign ownership first — debt without an owner never gets resolved. Protect sprint capacity before it fills up. Then close the loop with metrics that prove the debt is actually gone.</p>
     </div>
 
-    <span class="slide-counter">6 / 7</span>
+    <span class="slide-counter">06 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
