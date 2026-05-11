@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template C — Diagram Carousel | figr.design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --bg: #FAFAFA;
+      --surface: #FFFFFF;
+      --ink: #0D0D0D;
+      --ink-muted: #6B6B6B;
+      --accent: #00C8B4;
+      --accent-light: #E6FAF8;
+      --border: #E8E8E8;
+      --ghost: #CCCCCC;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #D0D0D0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 40px 0;
+    }
+
+    /* ── Shared slide base ── */
+    .slide {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── Wordmark ── */
+    .wordmark {
+      position: absolute;
+      bottom: 32px;
+      right: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Slide counter ── */
+    .slide-counter {
+      position: absolute;
+      bottom: 34px;
+      left: 40px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ghost);
+    }
+
+    /* ────────────────────────────
+       SLIDE 1 — HOOK
+    ──────────────────────────── */
+    .slide-1 {
+      background: var(--surface);
+      display: flex;
+      align-items: stretch;
+    }
+
+    .slide-1 .left-panel {
+      width: 540px;
+      flex-shrink: 0;
+      padding: 80px 60px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-1 .chip {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 14px;
+      border-radius: 4px;
+      width: fit-content;
+      margin-bottom: 28px;
+    }
+
+    .slide-1 h1 {
+      font-size: 58px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 22px;
+    }
+
+    .slide-1 .body {
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .slide-1 .right-panel {
+      flex: 1;
+      background: var(--bg);
+      border-left: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-1 .teaser-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      opacity: 0.5;
+    }
+
+    .slide-1 .teaser-box-top {
+      width: 160px;
+      height: 56px;
+      border: 2px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 10px;
+    }
+
+    .slide-1 .teaser-arrow {
+      font-size: 20px;
+      color: var(--accent);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .slide-1 .teaser-box-bottom {
+      width: 160px;
+      height: 56px;
+      border: 2px solid var(--border);
+      background: var(--surface);
+      border-radius: 10px;
+    }
+
+    /* ────────────────────────────
+       SLIDES 2–6 — SHARED SPLIT LAYOUT
+    ──────────────────────────── */
+    .slide-content {
+      background: var(--surface);
+      display: flex;
+      align-items: stretch;
+    }
+
+    .slide-content .left-panel {
+      width: 540px;
+      flex-shrink: 0;
+      background: var(--bg);
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .slide-content .diagram-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #BBBBBB;
+      align-self: flex-start;
+    }
+
+    .slide-content .right-panel {
+      flex: 1;
+      background: var(--surface);
+      border-left: 3px solid var(--border);
+      padding: 60px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-content .slide-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .slide-content h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .slide-content .body {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+    }
+
+    /* ────────────────────────────
+       SLIDE 2 — VENN DIAGRAM
+    ──────────────────────────── */
+    .venn-container {
+      position: relative;
+      width: 340px;
+      height: 240px;
+    }
+
+    .venn-circle-left {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: rgba(0, 200, 180, 0.12);
+    }
+
+    .venn-circle-right {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 2px solid var(--ink);
+      background: rgba(13, 13, 13, 0.06);
+    }
+
+    .venn-label-left {
+      position: absolute;
+      left: 20px;
+      top: 110px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .venn-label-right {
+      position: absolute;
+      right: 8px;
+      top: 110px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .venn-label-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 100px;
+      font-size: 11px;
+      color: var(--ink-muted);
+      text-align: center;
+      width: 80px;
+    }
+
+    /* ────────────────────────────
+       SLIDE 3 — VERTICAL FLOW
+    ──────────────────────────── */
+    .flow-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .flow-box {
+      width: 100%;
+      max-width: 360px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .flow-box.accent {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .flow-box .flow-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .flow-box.accent .flow-title {
+      color: var(--accent);
+    }
+
+    .flow-box:not(.accent) .flow-title {
+      color: var(--ink);
+    }
+
+    .flow-box .flow-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 6px;
+    }
+
+    .flow-arrow {
+      font-size: 22px;
+      color: var(--accent);
+      text-align: center;
+      margin: 8px 0;
+    }
+
+    /* ────────────────────────────
+       SLIDE 4 — COMPARISON TABLE
+    ──────────────────────────── */
+    .compare-table {
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .compare-table .table-header {
+      display: flex;
+    }
+
+    .compare-table .th-left {
+      flex: 1;
+      background: var(--accent);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table .th-right {
+      flex: 1;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 14px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    .compare-table .table-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table .table-row:last-child {
+      border-bottom: none;
+    }
+
+    .compare-table .td-left {
+      flex: 1;
+      background: var(--accent-light);
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .compare-table .td-right {
+      flex: 1;
+      background: var(--surface);
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.4;
+      border-left: 1px solid var(--border);
+    }
+
+    /* ────────────────────────────
+       SLIDE 5 — 2×2 GRID
+    ──────────────────────────── */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .grid-cell {
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      background: var(--surface);
+    }
+
+    .grid-cell.accent {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .grid-cell.muted {
+      opacity: 0.65;
+    }
+
+    .grid-cell .cell-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .grid-cell .cell-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* ────────────────────────────
+       SLIDE 6 — STEP LADDER
+    ──────────────────────────── */
+    .step-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .step-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-dot.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .step-text {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .step-text.filled {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .step-text.unfilled {
+      font-weight: 400;
+      color: var(--ink-muted);
+    }
+
+    /* ────────────────────────────
+       SLIDE 7 — CTA
+    ──────────────────────────── */
+    .slide-7 {
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-7 .cta-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding: 80px;
+    }
+
+    .slide-7 h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+      max-width: 680px;
+      line-height: 1.1;
+    }
+
+    .slide-7 .sub {
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-bottom: 48px;
+      max-width: 500px;
+      line-height: 1.55;
+    }
+
+    .slide-7 .cta-btn {
+      background: var(--accent);
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 18px 40px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 1 — HOOK
+  ══════════════════════════════════════ -->
+  <div class="slide slide-1">
+    <!-- Left panel -->
+    <div class="left-panel">
+      <div class="chip">Framework</div>
+      <h1>These two are not the same thing.</h1>
+      <p class="body">UX debt and design debt feel identical — but they compound differently and need different fixes.</p>
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+      <div class="teaser-visual">
+        <div class="teaser-box-top"></div>
+        <div class="teaser-arrow">↕</div>
+        <div class="teaser-box-bottom"></div>
+      </div>
+    </div>
+
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 2 — PROBLEM / VENN DIAGRAM
+  ══════════════════════════════════════ -->
+  <div class="slide slide-content">
+    <!-- Left panel: Venn diagram -->
+    <div class="left-panel">
+      <span class="diagram-label">The Confusion</span>
+      <div class="venn-container">
+        <div class="venn-circle-left"></div>
+        <div class="venn-circle-right"></div>
+        <span class="venn-label-left">UX Debt</span>
+        <span class="venn-label-right">Design Debt</span>
+        <span class="venn-label-center">Looks the same</span>
+      </div>
+    </div>
+
+    <!-- Right panel: Text -->
+    <div class="right-panel">
+      <span class="slide-label">The Problem</span>
+      <h2>Why teams mix these up — and why it costs them</h2>
+      <p class="body">Both feel like "things we didn't do properly." But UX debt is felt by your users — it's friction in the experience. Design debt is felt by your team — it's inconsistency in the system. Treating them the same means fixing the wrong problem every time.</p>
+    </div>
+
+    <span class="slide-counter">2 / 7</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 3 — TIP 01 / VERTICAL FLOW
+  ══════════════════════════════════════ -->
+  <div class="slide slide-content">
+    <!-- Left panel: Two-box flow -->
+    <div class="left-panel">
+      <span class="diagram-label">Definition</span>
+      <div class="flow-stack">
+        <div class="flow-box accent">
+          <div class="flow-title">UX Debt</div>
+          <div class="flow-sub">Friction the user feels</div>
+        </div>
+        <div class="flow-arrow">↕</div>
+        <div class="flow-box">
+          <div class="flow-title">Design Debt</div>
+          <div class="flow-sub">Inconsistency the system carries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel: Text -->
+    <div class="right-panel">
+      <span class="slide-label">Tip 01</span>
+      <h2>Start by naming the debt correctly</h2>
+      <p class="body">UX debt shows up in user research, support tickets, and usability tests. Design debt shows up in component audits, design reviews, and engineering handoffs. One is a user problem. The other is a system problem. Name it right before you prioritize it.</p>
+    </div>
+
+    <span class="slide-counter">3 / 7</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 4 — TIP 02 / COMPARISON TABLE
+  ══════════════════════════════════════ -->
+  <div class="slide slide-content">
+    <!-- Left panel: Comparison table -->
+    <div class="left-panel">
+      <span class="diagram-label">How to Spot It</span>
+      <div class="compare-table">
+        <div class="table-header">
+          <div class="th-left">UX Debt</div>
+          <div class="th-right">Design Debt</div>
+        </div>
+        <div class="table-row">
+          <div class="td-left">Users struggle</div>
+          <div class="td-right">Team struggles</div>
+        </div>
+        <div class="table-row">
+          <div class="td-left">Found in analytics</div>
+          <div class="td-right">Found in audits</div>
+        </div>
+        <div class="table-row">
+          <div class="td-left">Hurts conversion</div>
+          <div class="td-right">Hurts velocity</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel: Text -->
+    <div class="right-panel">
+      <span class="slide-label">Tip 02</span>
+      <h2>Use different signals to surface each type</h2>
+      <p class="body">UX debt leaves evidence in your data — drop-offs, failed flows, high task time. Design debt hides in your process — slow handoffs, mismatched components, duplicate patterns. You need both lenses to catch both problems before they compound.</p>
+    </div>
+
+    <span class="slide-counter">4 / 7</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 5 — TIP 03 / 2×2 GRID
+  ══════════════════════════════════════ -->
+  <div class="slide slide-content">
+    <!-- Left panel: Priority matrix -->
+    <div class="left-panel">
+      <span class="diagram-label">Priority Matrix</span>
+      <div class="grid-2x2">
+        <div class="grid-cell accent">
+          <div class="cell-title">Fix first</div>
+          <div class="cell-sub">High friction + visible to users</div>
+        </div>
+        <div class="grid-cell">
+          <div class="cell-title">Schedule</div>
+          <div class="cell-sub">System inconsistency blocking velocity</div>
+        </div>
+        <div class="grid-cell muted">
+          <div class="cell-title">Monitor</div>
+          <div class="cell-sub">Low-impact UX edge cases</div>
+        </div>
+        <div class="grid-cell muted">
+          <div class="cell-title">Backlog</div>
+          <div class="cell-sub">Cosmetic design inconsistency</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel: Text -->
+    <div class="right-panel">
+      <span class="slide-label">Tip 03</span>
+      <h2>Prioritise by impact, not by visibility</h2>
+      <p class="body">Not all debt is equal. High-friction UX debt blocking users from completing tasks should be fixed in the current sprint. Design system inconsistencies slowing engineers down should be scheduled. Treat the matrix as a triage tool, not a backlog filter.</p>
+    </div>
+
+    <span class="slide-counter">5 / 7</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 6 — TIP 04 / STEP LADDER
+  ══════════════════════════════════════ -->
+  <div class="slide slide-content">
+    <!-- Left panel: Step ladder -->
+    <div class="left-panel">
+      <span class="diagram-label">The Fix Cycle</span>
+      <div class="step-ladder">
+        <div class="step-item">
+          <div class="step-dot filled">1</div>
+          <span class="step-text filled">Audit: categorize into UX vs. design debt</span>
+        </div>
+        <div class="step-item">
+          <div class="step-dot filled">2</div>
+          <span class="step-text filled">Assign: product owns UX, system team owns design</span>
+        </div>
+        <div class="step-item">
+          <div class="step-dot filled">3</div>
+          <span class="step-text filled">Dedicate 20% of sprint capacity</span>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">4</div>
+          <span class="step-text unfilled">Measure: coverage rate + task success rate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel: Text -->
+    <div class="right-panel">
+      <span class="slide-label">Tip 04</span>
+      <h2>Build a rhythm for clearing debt — not a one-time sprint</h2>
+      <p class="body">One-off debt sprints don't hold. Build it into the regular cadence. Audit and assign ownership first — debt without an owner never gets resolved. Protect sprint capacity before it fills up. Then close the loop with metrics that prove the debt is actually gone.</p>
+    </div>
+
+    <span class="slide-counter">6 / 7</span>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SLIDE 7 — CTA
+  ══════════════════════════════════════ -->
+  <div class="slide slide-7">
+    <div class="cta-center">
+      <h2>Which one does your team confuse most?</h2>
+      <p class="sub">Follow figr.design for weekly frameworks that make design leadership less ambiguous.</p>
+      <span class="cta-btn">Follow for more frameworks →</span>
+    </div>
+    <span class="wordmark">figr.design</span>
+  </div>
+
+</body>
+</html>
