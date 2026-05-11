@@ -154,7 +154,7 @@
       height: 44px;
       border-radius: 50%;
       background: var(--accent);
-      color: #FFFFFF;
+      color: var(--surface);
       font-size: 16px;
       font-weight: 700;
       display: flex;
@@ -206,7 +206,7 @@
       border-radius: 4px;
     }
 
-    .slide-card .slide-counter {
+    .slide-counter {
       position: absolute;
       bottom: 32px;
       left: 52px;
@@ -265,11 +265,10 @@
       display: inline-block;
       border: 2px solid var(--accent);
       color: var(--accent);
-      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-weight: 600;
       padding: 14px 32px;
-      border-radius: 10px;
+      border-radius: 8px;
       text-decoration: none;
       background: transparent;
     }
@@ -291,6 +290,7 @@
       <p class="sub">A repeatable format that actually improves work — without the circular feedback loops.</p>
     </div>
     <div class="bottom-bar"></div>
+    <span class="slide-counter">01 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -397,6 +397,7 @@
   <!-- ══════════════════════════════════════════
        SLIDE 7 — CTA
   ══════════════════════════════════════════ -->
+  <!-- no counter on CTA slide by design -->
   <div class="slide slide-7">
     <div class="center-content">
       <div class="arrow">↓</div>
