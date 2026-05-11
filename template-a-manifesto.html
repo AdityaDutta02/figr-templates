@@ -11,12 +11,9 @@
     /* ── Design Tokens ── */
     :root {
       --bg: #FAFAFA;
-      --surface: #FFFFFF;
       --ink: #0D0D0D;
       --ink-muted: #6B6B6B;
       --accent: #00C8B4;
-      --accent-light: #E6FAF8;
-      --border: #E8E8E8;
       --dark: #0D0D0D;
       --ghost: #EBEBEB;
     }
@@ -60,7 +57,7 @@
        SLIDE 1 — Hook (dark)
     ══════════════════════════════════════════ */
     .slide-1 {
-      background: #0D0D0D;
+      background: var(--dark);
     }
 
     .slide-1 .cyan-bar {
@@ -198,7 +195,7 @@
        SLIDE 7 — CTA (dark)
     ══════════════════════════════════════════ */
     .slide-7 {
-      background: #0D0D0D;
+      background: var(--dark);
     }
 
     .slide-7 .cyan-bar {
@@ -268,6 +265,7 @@
       <h1>Your design system is lying to you.</h1>
       <p class="sub">4 signs it's quietly failing your team</p>
     </div>
+    <span class="slide-counter" style="position:absolute;bottom:32px;left:80px;font-size:12px;font-weight:500;color:#555555;z-index:1;">01 / 07</span>
     <span class="wordmark">figr.design</span>
   </div>
 
@@ -275,7 +273,7 @@
        SLIDE 2 — The Problem
   ══════════════════════════════════════════ -->
   <div class="slide slide-light">
-    <span class="ghost-number">02</span>
+    <span class="ghost-number">01</span>
     <div class="content">
       <p class="slide-label">The Problem</p>
       <h2>Most design systems die in silence.</h2>
@@ -290,7 +288,7 @@
        SLIDE 3 — Sign 01
   ══════════════════════════════════════════ -->
   <div class="slide slide-light">
-    <span class="ghost-number">03</span>
+    <span class="ghost-number">02</span>
     <div class="content">
       <p class="slide-label">Sign 01</p>
       <h2>Designers are overriding tokens.</h2>
@@ -305,7 +303,7 @@
        SLIDE 4 — Sign 02
   ══════════════════════════════════════════ -->
   <div class="slide slide-light">
-    <span class="ghost-number">04</span>
+    <span class="ghost-number">03</span>
     <div class="content">
       <p class="slide-label">Sign 02</p>
       <h2>No one owns the changelog.</h2>
@@ -320,7 +318,7 @@
        SLIDE 5 — Sign 03
   ══════════════════════════════════════════ -->
   <div class="slide slide-light">
-    <span class="ghost-number">05</span>
+    <span class="ghost-number">04</span>
     <div class="content">
       <p class="slide-label">Sign 03</p>
       <h2>Adoption is tracked by vibes, not data.</h2>
@@ -335,7 +333,7 @@
        SLIDE 6 — Sign 04
   ══════════════════════════════════════════ -->
   <div class="slide slide-light">
-    <span class="ghost-number">06</span>
+    <span class="ghost-number">05</span>
     <div class="content">
       <p class="slide-label">Sign 04</p>
       <h2>The system lives in Figma only.</h2>
