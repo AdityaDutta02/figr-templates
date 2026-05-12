@@ -53,7 +53,7 @@
       width: 420px;
       height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,200,180,0.10) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(0,200,180,0.14) 0%, transparent 65%);
       pointer-events: none;
       z-index: 0;
     }
@@ -66,7 +66,7 @@
       width: 260px;
       height: 260px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,200,180,0.06) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,200,180,0.09) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -78,7 +78,7 @@
       width: 320px;
       height: 320px;
       border-radius: 60px;
-      background: rgba(0,200,180,0.06);
+      background: rgba(0,200,180,0.10);
       transform: rotate(20deg);
       pointer-events: none;
       z-index: 0;
@@ -201,9 +201,8 @@
     }
 
     .slide-card .card {
-      width: 880px;
+      width: 920px;
       background: var(--surface);
-      border: 1px solid var(--border);
       border-radius: 20px;
       padding: 60px 68px;
     }
@@ -292,13 +291,6 @@
       z-index: 1;
     }
 
-    .slide-7 .arrow {
-      font-size: 86px;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 32px;
-    }
-
     .slide-7 h2 {
       font-size: 48px;
       font-weight: 700;
@@ -318,14 +310,84 @@
 
     .slide-7 .cta-btn {
       display: inline-block;
-      border: 2px solid var(--accent);
-      color: var(--accent);
+      border: none;
+      color: #FFFFFF;
       font-size: 19px;
       font-weight: 600;
       padding: 14px 32px;
       border-radius: 8px;
       text-decoration: none;
-      background: transparent;
+      background: #00C8B4;
+    }
+
+    /* ── Hook rings ── */
+    .hook-ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hook-ring-1 {
+      width: 560px;
+      height: 560px;
+      border: 1.5px solid rgba(0,200,180,0.18);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .hook-ring-2 {
+      width: 380px;
+      height: 380px;
+      border: 1.5px solid rgba(0,200,180,0.10);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ── Hook accent line ── */
+    .hook-accent-line {
+      width: 64px;
+      height: 4px;
+      background: #00C8B4;
+      border-radius: 2px;
+      margin: 0 auto 20px auto;
+    }
+
+    /* ── Card upgrades ── */
+    .slide-card .card {
+      border: none;
+      box-shadow: 0 8px 48px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid #00C8B4;
+    }
+
+    /* ── Badge ring ── */
+    .badge-ring {
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,200,180,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── CTA arrow wrap ── */
+    .cta-arrow-wrap {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #E6FAF8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .cta-arrow {
+      font-size: 40px;
+      color: #00C8B4;
+      line-height: 1;
+      margin-bottom: 0;
     }
 
     /* Brand block adjustments for slides with bottom bar */
@@ -342,9 +404,12 @@
   ══════════════════════════════════════════ -->
   <div class="slide slide-1">
     <div class="bg-shape"></div>
+    <div class="hook-ring hook-ring-1"></div>
+    <div class="hook-ring hook-ring-2"></div>
     <span class="chip">HOW TO</span>
     <div class="center-content">
       <h1>Run better design critiques in 30 min.</h1>
+      <div class="hook-accent-line"></div>
       <p class="sub">A repeatable format that actually improves work — without the circular feedback loops.</p>
     </div>
     <div class="bottom-bar"></div>
@@ -362,7 +427,9 @@
     <div class="card-wrap">
       <div class="card">
         <div class="card-header">
-          <div class="badge">!</div>
+          <div class="badge-ring">
+            <div class="badge">!</div>
+          </div>
           <span class="card-label">The Problem</span>
         </div>
         <h2>Most critiques are just opinion contests.</h2>
@@ -385,7 +452,9 @@
     <div class="card-wrap">
       <div class="card">
         <div class="card-header">
-          <div class="badge">1</div>
+          <div class="badge-ring">
+            <div class="badge">1</div>
+          </div>
           <span class="card-label">Step 01 — 0–5 min</span>
         </div>
         <h2>State the goal before anything else.</h2>
@@ -408,7 +477,9 @@
     <div class="card-wrap">
       <div class="card">
         <div class="card-header">
-          <div class="badge">2</div>
+          <div class="badge-ring">
+            <div class="badge">2</div>
+          </div>
           <span class="card-label">Step 02 — 5–10 min</span>
         </div>
         <h2>Silent review first. No talking.</h2>
@@ -431,7 +502,9 @@
     <div class="card-wrap">
       <div class="card">
         <div class="card-header">
-          <div class="badge">3</div>
+          <div class="badge-ring">
+            <div class="badge">3</div>
+          </div>
           <span class="card-label">Step 03 — 10–22 min</span>
         </div>
         <h2>Feedback must reference the goal, not taste.</h2>
@@ -454,7 +527,9 @@
     <div class="card-wrap">
       <div class="card">
         <div class="card-header">
-          <div class="badge">4</div>
+          <div class="badge-ring">
+            <div class="badge">4</div>
+          </div>
           <span class="card-label">Step 04 — 22–30 min</span>
         </div>
         <h2>Designer closes with a decision, not a list.</h2>
@@ -476,7 +551,9 @@
   <div class="slide slide-7">
     <div class="bg-shape"></div>
     <div class="center-content">
-      <div class="arrow">↓</div>
+      <div class="cta-arrow-wrap">
+        <div class="cta-arrow">↓</div>
+      </div>
       <h2>Follow figr.design</h2>
       <p class="sub">Weekly frameworks for design leads.</p>
       <span class="cta-btn">Visit figr.design →</span>
